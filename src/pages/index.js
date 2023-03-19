@@ -3,15 +3,15 @@ import Head from 'next/head'
 
 export default function Home() {
   return (
-    <div className='text-4xl'>
+    <div>
       <Head>
         <title>Amazon Clone</title>
       </Head>
 
-      <h1>hello</h1>
+      <h1></h1>
       <Header />
 
-      <h1>hii</h1>
+      <h1></h1>
     </div>
   )
 }
