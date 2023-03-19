@@ -11,12 +11,12 @@ const Header = () => {
     <header>
       {/* Top Nav */}
 
-      <div className='flex items-center gap-4 bg-amazon_blue p-1 flex-grow py-2'>
+      <div className='flex items-center gap-4 bg-amazon_blue p-3 flex-grow py-2'>
         <div className='flex items-center flex-grow mt-2 sm:flex-grow-0'>
           <Image
             width={150}
             height={40}
-            src='https://pngimg.com/uploads/amazon/amazon_PNG11.png'
+            src='https://bit.ly/3LFgHPX'
             alt='amazon logo'
             className='cursor-pointer'
           />
