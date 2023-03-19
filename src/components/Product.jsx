@@ -28,13 +28,6 @@ const Product = ({ title, price, description, category, image, rating }) => {
         <span>€</span>
       </div>
 
-      {/* {hasPrime && (
-        <div className='flex items-center gap-2'>
-          <Image src='https://bit.ly/3n2UuRB' width={50} height={50} />
-          <p className='text-xs text-gray-500'>FREE Next-Day Delivery</p>
-        </div>
-      )} */}
-
       <button className=' button'>Add to Basket</button>
     </div>
   )
