@@ -5,6 +5,7 @@ import {
   ShoppingCartIcon,
   Bars3Icon,
 } from '@heroicons/react/24/outline'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 const Header = () => {
   return (
@@ -32,7 +33,7 @@ const Header = () => {
 
         {/* Right Nav */}
         <div className='flex items-center gap-6 text-white whitespace-nowrap text-sm md:text-base'>
-          <div className='link'>
+          <div className='link' onClick={signIn}>
             <p>Hello Anxhi</p>
             <p className='font-bold'>Account & Lists</p>
           </div>
