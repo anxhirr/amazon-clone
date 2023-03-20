@@ -4,11 +4,32 @@ import Header from '@/components/Header'
 import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useSelector } from 'react-redux'
+import { loadStripe } from '@stripe/stripe-js'
+import axios from 'axios'
+
+const stripePromise = loadStripe(process.env.stripe_public_key)
 
 const Checkout = () => {
   const items = useSelector(selectItems)
   const total = useSelector(selectTotal)
   const { data: session } = useSession()
+
+  const createCheckoutSession = async () => {
+    const stripe = await stripePromise
+    console.log('stripe', stripe)
+
+    const checkoutSession = await axios.post('/api/create-checkout-session', {
+      items,
+      email: session.user.email,
+    })
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    })
+    console.log('result', result)
+
+    if (result.error) alert(result.error.message)
+  }
 
   return (
     <div className='bg-gray-100'>
@@ -65,7 +86,13 @@ const Checkout = () => {
                   Sign in to Checkout
                 </button>
               ) : (
-                <button className='button mt-2'>Proceed to Checkout</button>
+                <button
+                  role='link'
+                  className='button mt-2'
+                  onClick={createCheckoutSession}
+                >
+                  Proceed to Checkout
+                </button>
               )}
 
               <p className='text-xs text-gray-500 mt-2'></p>
