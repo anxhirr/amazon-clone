@@ -1,4 +1,4 @@
-import { addToBasket, removeFromBasket } from '@/app/slices/basketSlice'
+import { addToBasket, removeFromBasket } from '@/store/slices/basketSlice'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import StarRating from './StarRating'

@@ -3,6 +3,7 @@ import GoogleProvider from 'next-auth/providers/google'
 
 const clientId = process.env.GOOGLE_ID
 const clientSecret = process.env.GOOGLE_SECRET
+const secret = process.env.NEXTAUTH_SECRET
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -13,6 +14,7 @@ export const authOptions = {
       clientSecret,
     }),
     // ...add more providers here
+    secret,
   ],
 }
 export default NextAuth(authOptions)

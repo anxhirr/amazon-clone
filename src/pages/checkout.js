@@ -1,4 +1,4 @@
-import { selectItems, selectTotal } from '@/app/slices/basketSlice'
+import { selectItems, selectTotal } from '@/store/slices/basketSlice'
 import CheckoutProduct from '@/components/CheckoutProduct'
 import Header from '@/components/Header'
 import { signIn, useSession } from 'next-auth/react'
