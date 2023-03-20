@@ -1,7 +1,32 @@
 import Image from 'next/image'
-import { StarIcon } from '@heroicons/react/24/outline'
+import { useDispatch } from 'react-redux'
+import { addToBasket } from '@/app/slices/basketSlice'
+import StarRating from './StarRating'
 
-const Product = ({ title, price, description, category, image, rating }) => {
+const Product = ({
+  title,
+  price,
+  description,
+  category,
+  image,
+  rating,
+  id,
+}) => {
+  const dispatch = useDispatch()
+  const addItemToBasket = () => {
+    // Add item to basket...
+    const product = {
+      id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      rating,
+    }
+
+    dispatch(addToBasket(product))
+  }
   return (
     <div className='relative flex flex-col m-5 bg-white z-30 p-10 max-h-[40rem]'>
       <p className='absolute top-2 right-2 italic text-xs text-gray-400'>
@@ -13,13 +38,7 @@ const Product = ({ title, price, description, category, image, rating }) => {
       </div>
       <h1 className='my-3'>{title}</h1>
 
-      <div className='flex'>
-        {Array(rating)
-          .fill()
-          .map((_, i) => (
-            <StarIcon key={i} className='w-5 text-yellow-500' />
-          ))}
-      </div>
+      <StarRating rating={rating} />
 
       <p className='text-xs my-2 line-clamp-2'>{description}</p>
 
@@ -28,7 +47,9 @@ const Product = ({ title, price, description, category, image, rating }) => {
         <span>€</span>
       </div>
 
-      <button className=' button'>Add to Basket</button>
+      <button className='button' onClick={addItemToBasket}>
+        Add to Basket
+      </button>
     </div>
   )
 }
