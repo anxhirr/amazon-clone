@@ -6,8 +6,12 @@ import {
   Bars3Icon,
 } from '@heroicons/react/24/outline'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 const Header = () => {
+  const { data: session } = useSession()
+  const router = useRouter()
+
   return (
     <header>
       {/* Top Nav */}
@@ -20,6 +24,7 @@ const Header = () => {
             src='https://bit.ly/3LFgHPX'
             alt='amazon logo'
             className='cursor-pointer'
+            onClick={() => router.push('/')}
           />
         </div>
         {/* Search Bar */}
@@ -33,15 +38,18 @@ const Header = () => {
 
         {/* Right Nav */}
         <div className='flex items-center gap-6 text-white whitespace-nowrap text-sm md:text-base'>
-          <div className='link' onClick={signIn}>
-            <p>Hello Anxhi</p>
+          <div className='link' onClick={!session ? signIn : signOut}>
+            <p>{session ? `Hello ${session.user.name}` : 'Login'}</p>
             <p className='font-bold'>Account & Lists</p>
           </div>
           <div className='link'>
             <p>Return</p>
             <p className='font-bold'>& Orders</p>
           </div>
-          <div className='link relative flex items-center'>
+          <div
+            className='link relative flex items-center'
+            onClick={() => router.push('/checkout')}
+          >
             <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 flex items-center justify-center rounded-full text-black font-bold text-sm'>
               0
             </span>
