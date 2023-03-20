@@ -45,7 +45,7 @@ const CheckoutProduct = ({
 
         <p className='text-xs my-2 line-clamp-3'>{description}</p>
 
-        <p>{price}</p>
+        <p>{price} €</p>
       </div>
 
       {/* Right */}
